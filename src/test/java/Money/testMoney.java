@@ -58,11 +58,41 @@ public class testMoney{
 
     @Test
     @DisplayName("Test de la conversion du moneyBag")
-    void test(){
+    void testConversionAssertEquals(){
         MoneyBag m = new MoneyBag();
         Money n = new Money(200,"GBP");
-        int num;
-        num = m.converter(n.amount(),n.currency());
-        System.out.println(num);
+        Money o = new Money(400,"EUR");
+        //Conversion en GBP
+        assertEquals((int)1.20*200,m.converter(n.amount(),n.currency()));
+        //Conversion en Euro
+        assertEquals((int)1.06*400,m.converter(o.amount(),o.currency()));
+    }
+
+    @Test
+    @DisplayName("Test add du MoneyBag")
+    void testAdd(){
+        MoneyBag m = new MoneyBag(200);
+        Money n = new Money(200,"GBP");
+        Money o = new Money(400,"EUR");
+        int numTest;
+        int numTest2;
+        numTest = (int) (m.getmAmount()+(n.amount()*1.20));
+        numTest2 = (int) (m.getmAmount()+(o.amount()*1.06));
+        assertEquals(numTest,m.add(n));
+        assertEquals(numTest2,m.add(o));
+    }
+
+    @Test
+    @DisplayName("Test sub du MoneyBag")
+    void testSub(){
+        MoneyBag m = new MoneyBag(200);
+        Money n = new Money(200,"GBP");
+        Money o = new Money(400,"EUR");
+        int numTest;
+        int numTest2;
+        numTest = (int) (m.getmAmount()-(n.amount()*1.20));
+        numTest2 = (int) (m.getmAmount()-(o.amount()*1.06));
+        assertEquals(numTest,m.sub(n));
+        assertEquals(numTest2,m.sub(o));
     }
 }

@@ -18,6 +18,7 @@ public class MoneyBag {
 
     public MoneyBag(){
     }
+
     public MoneyBag(int amount){
         this.mAmount = amount;
     }
@@ -47,7 +48,7 @@ public class MoneyBag {
 
     public int sub(Money money){
         int resultAmount;
-        resultAmount = converter(money.amount(),money.currency()) - this.mAmount;
+        resultAmount = this.mAmount- converter(money.amount(),money.currency());
         return resultAmount;
     }
 }
